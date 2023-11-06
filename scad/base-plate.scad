@@ -28,21 +28,33 @@ module col_groove() {
     groove();
 }
 
-module mount_point(depth) {
+module mount_point(total_depth, use_screw) {
+    width = 9;
+    bolt_width = 3;
+    nut_width = 6;
+    nut_depth = 2.25;
     difference() {
         union() {
-            translate([-((screw_width + 2) / 2), 0, 0])
-            cube([(screw_width + 2) / 2, screw_width + 2, depth]);
+            translate([-width / 2, 0, 0])
+            cube([width / 2, width, total_depth]);
             
-            translate([-screw_width/2-1, screw_width/2+1, 0])
-            cylinder(h=depth, r=screw_width/2+1, $fn=100);
+            translate([-width/2, width/2, 0])
+            cylinder(h=total_depth, r=width/2, $fn=100);
         };
         
-        translate([-screw_width/2-1, screw_width/2+1, -1])
-        cylinder(h=depth+2, r=screw_width/2, $fn=100);
+        if(!use_screw){
+            translate([-width/2, width/2, -1])
+            cylinder(h=total_depth+2, r=bolt_width/2, $fn=100);
+        }
+        else {
+            translate([-width/2, width/2, -1])
+            cylinder(h=nut_depth+1, r=nut_width/2, $fn=6);
+            
+            translate([-width/2, width/2, nut_depth-1])
+            cylinder(h=total_depth-nut_depth+3, r=bolt_width/2, $fn=100);
+        }
     };
 }
-
 difference () {
     union() {
         // main body
@@ -54,31 +66,21 @@ difference () {
         cube([height, length, width/3]); 
         
         // mounting point for thumb cluster
-        mount_point(height);
+        mount_point(height, false);
         
-        // attachment points for controller cage
-        // near point
-        translate([0, 2, height])
+        // hinges for controller cage        
+        translate([0, 10.15, height])
         rotate([90, 90, 0])
-        mount_point(2);
+        mount_point(5, true);
         
-        translate([0, 9.15, height])
-        rotate([90, 90, 0])
-        mount_point(5);
-        
-        // far point
-        translate([0, 84, height])
-        rotate([90, 90, 0])
-        mount_point(5);
-        
-        translate([0, 89.15, height])
-        rotate([90, 90, 0])
-        mount_point(2);
+        translate([9, 82, height])
+        rotate([90, 90, 180])
+        mount_point(5, true);
         
         // lock point
-        translate([width - screw_width-2, 84, height])
-        rotate([90, 90, 0])
-        mount_point(5);
+        translate([width - 3, 82, height])
+        rotate([90, 90, 180])
+        mount_point(5, true);
     }
     
     // index finger / double width
