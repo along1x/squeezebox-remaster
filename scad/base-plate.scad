@@ -1,12 +1,10 @@
-length = 160; // 106 length per column, plus some clearance to customize variance between fingers
+length = 135; // 106 length per column, plus some clearance to customize variance between fingers
 col_width = 17;
 width = col_width * 5 + 10; // 5 fingers + some clearances
 height = 3;
 
-screw_width = 3;
+screw_width = 4.25;
 slot_length = 25;
-
-cage_length = 80;
 
 module groove() {
     union() {
@@ -30,8 +28,8 @@ module col_groove() {
 
 module mount_point(total_depth, use_screw) {
     width = 9;
-    bolt_width = 3;
-    nut_width = 6;
+    bolt_width = 3.2;
+    nut_width = 6.5;
     nut_depth = 2.25;
     difference() {
         union() {
@@ -60,25 +58,26 @@ difference () {
         // main body
         cube([width, length, height]);
         
-        // cross beam for vertical support
-        // not sure if i want this yet!
-        translate([width, 0, -(width/3-height)/2])
-        cube([height, length, width/3]); 
+//        // cross beam for vertical support
+//        // not sure if i want this yet!
+//        translate([width, 0, -(width/3-height)/2])
+//        cube([height, length, width/3]); 
         
         // mounting point for thumb cluster
         mount_point(height, false);
         
         // hinges for controller cage        
-        translate([0, 10.15, height])
+        translate([0, 9, height])
         rotate([90, 90, 0])
         mount_point(5, true);
         
-        translate([9, 82, height])
+        translate([9, length - 9, height])
+        
         rotate([90, 90, 180])
         mount_point(5, true);
         
         // lock point
-        translate([width - 3, 82, height])
+        translate([width - 3, length - 9, height])
         rotate([90, 90, 180])
         mount_point(5, true);
     }
