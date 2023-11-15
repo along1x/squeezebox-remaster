@@ -4,8 +4,8 @@ outer_box_height = 17;
 outer_box_depth = 3;
 
 // Define the dimensions of the large hole
-large_hole_diameter = 3.3;
-small_hole_diameter = 2.1;
+large_hole_diameter = 3.4;
+small_hole_diameter = 2.2;
 
 lower_row_rotation = -80;
 upper_row_rotation = 30;
@@ -13,7 +13,7 @@ upper_row_rotation = 30;
 module key_well_offsets() {
     union() {
         // Define the dimensions of the inner square indentation
-        inner_square_side = 13.75;
+        inner_square_side = 14.5;
         inner_square_depth = 2.4;
 
         // Create the centered square indentation
@@ -47,13 +47,13 @@ module mount_point(thickness) {
     rotate([0, 90, 0])
     difference() {
         union() {
-            cube([(screw_width + 2) / 2, screw_width + 2, thickness]);
+            cube([(screw_width + 4) / 2, screw_width + 4, thickness]);
             
-            translate([screw_width/2+1, screw_width/2+1, 0])
-            cylinder(h=thickness, r=screw_width/2+1, $fn=100);
+            translate([screw_width/2+2, screw_width/2+2, 0])
+            cylinder(h=thickness, r=screw_width/2+2, $fn=100);
         };
         
-        translate([screw_width / 2 + 1, screw_width / 2 + 1, -1])
+        translate([screw_width / 2 + 2, screw_width / 2 + 2, -1])
         cylinder(h=thickness + 2, r=screw_width/ 2, $fn=100);
     };
 }
@@ -88,9 +88,9 @@ union() {
     };
     
     // add a mounting point to the base
-    translate([outer_box_width*1.5 - base_plate_thickness / 2 - mount_thickness - tolerance, 6, 0])
-    mount_point(2);
+    translate([outer_box_width*1.5 - base_plate_thickness / 2 - mount_thickness - tolerance - 2, 4, 0])
+    mount_point(4);
     
-    translate([outer_box_width*1.5 + base_plate_thickness / 2 + tolerance, 6, 0])
+    translate([outer_box_width*1.5 + base_plate_thickness / 2 + tolerance, 4, 0])
     mount_point(5);
 };
