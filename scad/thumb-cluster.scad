@@ -38,22 +38,25 @@ module key_well_offsets() {
     }
 }
 
-screw_width = 3;
+screw_width = 3.2;
 base_plate_thickness = 3;
 mount_thickness = 2;
 
 module mount_point(thickness) {
+    width = 9;
+    
     // mounting point for thumb cluster
-    rotate([0, 90, 0])
+    rotate([0, -90, 0])
     difference() {
         union() {
-            cube([(screw_width + 4) / 2, screw_width + 4, thickness]);
+            translate([-width / 2, 0, 0])
+            cube([width / 2, width, thickness]);
             
-            translate([screw_width/2+2, screw_width/2+2, 0])
-            cylinder(h=thickness, r=screw_width/2+2, $fn=100);
+            translate([-width/2, width/2, 0])
+            cylinder(h=thickness, r=width/2, $fn=100);
         };
         
-        translate([screw_width / 2 + 2, screw_width / 2 + 2, -1])
+        translate([-width / 2, width / 2, -1])
         cylinder(h=thickness + 2, r=screw_width/ 2, $fn=100);
     };
 }
@@ -88,9 +91,9 @@ union() {
     };
     
     // add a mounting point to the base
-    translate([outer_box_width*1.5 - base_plate_thickness / 2 - mount_thickness - tolerance - 2, 4, 0])
+    translate([23.45, 2, 0])
     mount_point(4);
     
-    translate([outer_box_width*1.5 + base_plate_thickness / 2 + tolerance, 4, 0])
-    mount_point(5);
+    translate([31.55, 2, 0])
+    mount_point(4);
 };
