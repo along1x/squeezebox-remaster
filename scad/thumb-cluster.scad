@@ -63,6 +63,7 @@ module mount_point(thickness) {
 
 tolerance = 0.05;
 
+rotate([0,180,0])
 union() {
     difference() {
         // base polygon, with softened/rounded edges
@@ -70,10 +71,10 @@ union() {
             offset(r=3, $fn=100) {
                 polygon([
                     [0, 0],
-                    [outer_box_width*3, 0],
-                    [outer_box_width*3, outer_box_height],
-                    [outer_box_width*2, outer_box_height + 5],
-                    [outer_box_width, outer_box_height + 5],
+                    [outer_box_width*3+2, 0],
+                    [outer_box_width*3+2, outer_box_height],
+                    [outer_box_width*2+1, outer_box_height + 5],
+                    [outer_box_width+1, outer_box_height + 5],
                     [0, outer_box_height]
                 ]);
             };
@@ -83,17 +84,17 @@ union() {
         translate([outer_box_width/2, outer_box_width/2, outer_box_depth/2])
         key_well_offsets();    
         
-        translate([outer_box_width*1.5, outer_box_width/2+5, outer_box_depth/2])
+        translate([outer_box_width*1.5+1, outer_box_width/2+5, outer_box_depth/2])
         key_well_offsets();
         
-        translate([outer_box_width*2.5, outer_box_width/2, outer_box_depth/2])
+        translate([outer_box_width*2.5+2, outer_box_width/2, outer_box_depth/2])
         key_well_offsets();
     };
     
     // add a mounting point to the base
-    translate([23.45, 2, 0])
+    translate([24.45, 2, 0])
     mount_point(4);
     
-    translate([31.55, 2, 0])
+    translate([32.55, 2, 0])
     mount_point(4);
 };
