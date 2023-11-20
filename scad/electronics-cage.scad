@@ -26,6 +26,7 @@ cage_width = 135;
 mount_height = 9;
 mount_width = 5;
 
+rotate([0,180,0])
 difference() {
     cube([width, cage_width, cage_height]);
     
