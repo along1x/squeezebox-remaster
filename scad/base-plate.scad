@@ -59,11 +59,6 @@ difference () {
         // main body
         cube([width, length, height]);
         
-//        // cross beam for vertical support
-//        // not sure if i want this yet!
-//        translate([width, 0, -(width/3-height)/2])
-//        cube([height, length, width/3]); 
-        
         // mounting point for thumb cluster
         mount_point(height, false);
         
