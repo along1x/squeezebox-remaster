@@ -74,7 +74,7 @@ union() {
                     [outer_box_width*3+2, 0],
                     [outer_box_width*3+2, outer_box_height],
                     [outer_box_width*2+1, outer_box_height + 5],
-                    [outer_box_width+1, outer_box_height + 5],
+                    [outer_box_width+1, outer_box_height + 11],
                     [0, outer_box_height]
                 ]);
             };
@@ -92,9 +92,13 @@ union() {
     };
     
     // add a mounting point to the base
-    translate([24.45, 2, 0])
-    mount_point(4);
-    
-    translate([32.55, 2, 0])
-    mount_point(4);
+    translate([20, outer_box_width, 0])
+    rotate([0,0,45])
+    union() {
+        translate([0, 0, 0])
+        mount_point(4);
+        
+        translate([8.1, 0, 0])
+        mount_point(4);
+    }
 };

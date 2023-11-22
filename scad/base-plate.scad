@@ -68,18 +68,21 @@ difference () {
         mount_point(height, false);
         
         // hinges for controller cage        
-        translate([0, 9, height])
+        translate([width-9, 9, height])
         rotate([90, 90, 0])
         mount_point(5, true);
         
-        translate([9, length - 9, height])
-        
+        translate([width, length - 9, height])
         rotate([90, 90, 180])
         mount_point(5, true);
         
-        // lock point
-        translate([width - 3, length - 9, height])
+        // lock points
+        translate([16, length - 9, height])
         rotate([90, 90, 180])
+        mount_point(5, true);
+        
+        translate([7, 9, height])
+        rotate([90, 90, 0])
         mount_point(5, true);
     }
     
