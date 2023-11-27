@@ -1,10 +1,11 @@
-length = 135; // 106 length per column, plus some clearance to customize variance between fingers
-col_width = 17;
+col_width = 19;
 width = col_width * 5 + 10; // 5 fingers + some clearances
 height = 3;
 
 screw_width = 4.25;
-slot_length = 25;
+slot_length = 30; // length between the center of the screw in the lowest to the highest position
+
+length = 108 + slot_length + screw_width; // 108 length per column, plus some clearance to customize variance between fingers (slot len)
 
 module groove() {
     union() {
