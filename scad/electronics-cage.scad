@@ -14,7 +14,7 @@ hinge_width = 4.2;
 mount_height = 9.2;
 mount_width = 6.25;
 
-rotate([0,0,180])
+rotate([0,180,0])
 difference() {
     union() {
         translate([0,cage_width,0])

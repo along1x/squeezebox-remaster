@@ -95,4 +95,9 @@ difference () {
     
     translate([col_width*4.5, 0, 0])
     col_groove();
+
+    // dig out a center channel that can more easily route wiring
+    translate([col_width,70,-2])
+    cube([col_width*3.75, 15, height+5]);
+    
 }
