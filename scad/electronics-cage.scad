@@ -46,7 +46,7 @@ module pcb_mount() {
     };
 }
 
-//rotate([0,180,0])
+rotate([0,180,0])
 union() {
     difference() {
         union() {
